@@ -31,22 +31,12 @@
         android:id="@+id/weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/updated_field"
+        android:layout_marginTop="100px"
         android:layout_centerHorizontal="true"
         android:textColor="#4040F9"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="90sp"
-        />
-
-    <TextView
-        android:id="@+id/current_temperature_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#4040F9"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50sp" />
+        android:textSize="70sp" />
 
     <TextView
         android:id="@+id/details_field"
@@ -55,8 +45,8 @@
         android:layout_below="@+id/weather_icon"
         android:layout_centerHorizontal="true"
         android:textColor="#4040F9"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
         android:id="@+id/humidity_field"
         android:layout_width="wrap_content"
@@ -64,8 +54,8 @@
         android:layout_below="@+id/details_field"
         android:layout_centerHorizontal="true"
         android:textColor="#4040F9"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
         android:id="@+id/pressure_field"
         android:layout_width="wrap_content"
@@ -73,7 +63,34 @@
         android:layout_below="@+id/humidity_field"
         android:layout_centerHorizontal="true"
         android:textColor="#4040F9"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/current_temperature_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pressure_field"
+        android:layout_centerHorizontal="true"
+        android:textColor="#4040F9"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        />
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/max_temperature_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/current_temperature_field"
+        android:layout_centerHorizontal="true"
+        android:textColor="#4040F9"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/min_temperature_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/max_temperature_field"
+        android:layout_centerHorizontal="true"
+        android:textColor="#4040F9"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

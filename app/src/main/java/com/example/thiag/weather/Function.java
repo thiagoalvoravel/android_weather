@@ -10,17 +10,18 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
+//import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class Function {
 
-    // Project Created by Ferdousur Rahman Shajib
-    // www.androstock.com
+    private static String units = "metric";
+    private static char unitsLetter = 'C';
 
     private static final String OPEN_WEATHER_MAP_URL =
-            "http://api.openweathermap.org/data/2.5/weather?q=Salvador,br&units=metric&lang=pt";
+            "http://api.openweathermap.org/data/2.5/weather?q=Salvador,br&units="+units+"&lang=pt";
 
     private static final String OPEN_WEATHER_MAP_API = "c29c9912c13f0ee16a1c43c9d469eef9";
 
@@ -56,7 +57,7 @@ public class Function {
     }
 
     public interface AsyncResponse {
-        void processFinish(String output1, String output2, String output3, String output4, String output5, String output6, String output7, String output8);
+        void processFinish(String output1, String output2, String output3, String output4, String output5, String output6, String output7, String output8, String output9, String output10);
     }
 
     public static class placeIdTask extends AsyncTask<String, Void, JSONObject> {
@@ -87,11 +88,14 @@ public class Function {
                 if(json != null){
                     JSONObject details = json.getJSONArray("weather").getJSONObject(0);
                     JSONObject main = json.getJSONObject("main");
-                    DateFormat df = DateFormat.getDateTimeInstance();
+                    //DateFormat df = DateFormat.getDateTimeInstance();
+                    SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy HH:mm");
 
                     String city = json.getString("name").toUpperCase(Locale.US) + ", " + json.getJSONObject("sys").getString("country");
                     String description = details.getString("description").toUpperCase(Locale.US);
-                    String temperature = String.format("%.2f", main.getDouble("temp"))+ "°";
+                    String temperature = main.getInt("temp")+ "°" + unitsLetter;
+                    String maxTemperature = main.getInt("temp_max")+ "°" + unitsLetter;
+                    String minTemperature = main.getInt("temp_min")+ "°" + unitsLetter;
                     String humidity = main.getString("humidity") + "%";
                     String pressure = main.getString("pressure") + " hPa";
                     String updatedOn = df.format(new Date(json.getLong("dt")*1000));
@@ -101,7 +105,7 @@ public class Function {
                                         json.getJSONObject("sys").getLong("sunset") * 1000
                                       );
 
-                    delegate.processFinish(city, description, temperature, humidity, pressure, updatedOn, iconText, ""+ (json.getJSONObject("sys").getLong("sunrise") * 1000));
+                    delegate.processFinish(city, description, temperature, maxTemperature, minTemperature, humidity, pressure, updatedOn, iconText, ""+ (json.getJSONObject("sys").getLong("sunrise") * 1000));
 
                 }
             } catch (JSONException e) {
