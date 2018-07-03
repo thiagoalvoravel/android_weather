@@ -94,7 +94,7 @@ public class Function {
                     String temperature = String.format("%.2f", main.getDouble("temp"))+ "°";
                     String humidity = main.getString("humidity") + "%";
                     String pressure = main.getString("pressure") + " hPa";
-                    String updatedOn = df.format(new Date(json.getLong("dt")*1000));
+                    String updatedOn = df.format(new Date().getTime());
                     String iconText = setWeatherIcon(
                                         details.getInt("id"),
                                         json.getJSONObject("sys").getLong("sunrise") * 1000,
